@@ -4,6 +4,7 @@ import { View,
     StyleSheet,
      TextInput,
       Platform, 
+      FlatList
        
     } from "react-native";
 import { Button } from "./components/Button";
@@ -28,19 +29,23 @@ export default function Home(){
       placeholder="New Skill"
       placeholderTextColor="#555"
       onChangeText={setNewSkill}/>
-      <Button/>
+      <Button onPress={handleAddNewSkill}/>
      
       <Text style={[styles.title,{marginVertical: 50}]}>
         My skills
       </Text>
 
-      {
+      <FlatList
+      data={myskills} 
+      keyExtractor={item => item}
+      renderItem={({item }) => 
+      ( <SkillCard  skill={item}/> 
 
-        myskills.map(skill =>(
-    <SkillCard/>
-      ))
+      )}
+      />
+
        
-      }
+       
      
     </View>
     
